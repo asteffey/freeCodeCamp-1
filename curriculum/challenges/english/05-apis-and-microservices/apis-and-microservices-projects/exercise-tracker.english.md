@@ -88,7 +88,9 @@ tests:
         });
         if (addRes.ok) {
           const actual = await addRes.json();
-          assert.deepEqual(actual, expected);
+          Object.keys(expected).forEach(key =>
+            assert.equal(expected[key], actual[key])
+          );
         } else {
           throw new Error(`${addRes.status} ${addRes.statusText}`);
         }
